@@ -1,0 +1,22 @@
+# Generated from .mcp.json for Codex CLI / IDE.
+# Merge these entries into ~/.codex/config.toml
+# or register them individually with `codex mcp add`.
+
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp"]
+
+[mcp_servers.playwright]
+command = "npx"
+args = ["-y", "@playwright/mcp@latest"]
+
+[mcp_servers.chrome-devtools]
+command = "npx"
+args = ["-y", "chrome-devtools-mcp@latest"]
+
+[mcp_servers.supabase]
+url = "https://mcp.supabase.com/mcp"
+
+[mcp_servers.postgresql-mcp]
+command = "npx"
+args = ["-y", "@henkey/postgres-mcp-server"]

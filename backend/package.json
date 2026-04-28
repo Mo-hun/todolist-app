@@ -1,0 +1,17 @@
+{
+  "name": "todolist-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "db:migrate": "node db/migrate.js",
+    "db:migrate:fresh": "node db/migrate.js --fresh",
+    "db:seed": "node db/seed.js",
+    "db:check": "node src/config/db.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.4.2",
+    "pg": "^8.20.0"
+  }
+}

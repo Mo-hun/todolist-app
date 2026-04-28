@@ -72,17 +72,17 @@ TASK-FE-01
 
 - **목적**: 로컬 개발 환경에서 애플리케이션 전용 PostgreSQL DB와 유저를 생성하고 환경변수로 관리한다.
 - **작업 내용**:
-  - [ ] PostgreSQL 설치 확인 및 서비스 실행 (`brew services start postgresql` 또는 `pg_ctl start`)
-  - [ ] 전용 DB 유저 생성: `CREATE USER todolist_user WITH PASSWORD '...';`
-  - [ ] 개발용 DB 생성: `CREATE DATABASE todolist_dev OWNER todolist_user;`
-  - [ ] 테스트용 DB 생성: `CREATE DATABASE todolist_test OWNER todolist_user;`
-  - [ ] `backend/.env` 파일 작성 (DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD, JWT_SECRET, PORT 등)
-  - [ ] `backend/.env.example` 파일 작성 (키만, 값 제외)
-  - [ ] `.gitignore`에 `.env` 등록 확인
+  - [x] PostgreSQL 설치 확인 및 서비스 실행 (`brew services start postgresql` 또는 `pg_ctl start`)
+  - [x] 전용 DB 유저 생성: `CREATE USER todolist_user WITH PASSWORD '...';`
+  - [x] 개발용 DB 생성: `CREATE DATABASE todolist_dev OWNER todolist_user;`
+  - [x] 테스트용 DB 생성: `CREATE DATABASE todolist_test OWNER todolist_user;`
+  - [x] `backend/.env` 파일 작성 (DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD, JWT_SECRET, PORT 등)
+  - [x] `backend/.env.example` 파일 작성 (키만, 값 제외)
+  - [x] `.gitignore`에 `.env` 등록 확인
 - **완료 조건**:
-  - [ ] `psql -U todolist_user -d todolist_dev` 접속 성공
-  - [ ] `todolist_dev`, `todolist_test` 두 DB 모두 존재 확인
-  - [ ] `.env` 파일이 Git에 포함되지 않음
+  - [x] `psql -U todolist_user -d todolist_dev` 접속 성공
+  - [x] `todolist_dev`, `todolist_test` 두 DB 모두 존재 확인
+  - [x] `.env` 파일이 Git에 포함되지 않음
 - **의존성**: 없음
 - **예상 소요**: 30분
 
@@ -92,20 +92,20 @@ TASK-FE-01
 
 - **목적**: `users`, `categories`, `todos` 테이블과 인덱스를 순번 prefix SQL 파일로 관리하여 스키마 이력을 추적한다.
 - **작업 내용**:
-  - [ ] `backend/db/migrations/` 디렉토리 생성
-  - [ ] `001_create_users.sql` 작성 (uuid-ossp 확장, users 테이블)
-  - [ ] `002_create_categories.sql` 작성 (categories 테이블, FK→users CASCADE, idx_categories_user_id)
-  - [ ] `003_create_todos.sql` 작성
-    - [ ] todos 테이블 (FK→users CASCADE, FK→categories SET NULL)
-    - [ ] `idx_todos_user_id`, `idx_todos_category_id`
-    - [ ] `idx_todos_due_date` (WHERE due_date IS NOT NULL)
-    - [ ] `idx_todos_user_completed_due` (복합 인덱스)
-  - [ ] 각 파일에 DOWN(롤백) 섹션 주석으로 포함
+  - [x] `backend/db/migrations/` 디렉토리 생성
+  - [x] `001_create_users.sql` 작성 (uuid-ossp 확장, users 테이블)
+  - [x] `002_create_categories.sql` 작성 (categories 테이블, FK→users CASCADE, idx_categories_user_id)
+  - [x] `003_create_todos.sql` 작성
+    - [x] todos 테이블 (FK→users CASCADE, FK→categories SET NULL)
+    - [x] `idx_todos_user_id`, `idx_todos_category_id`
+    - [x] `idx_todos_due_date` (WHERE due_date IS NOT NULL)
+    - [x] `idx_todos_user_completed_due` (복합 인덱스)
+  - [x] 각 파일에 DOWN(롤백) 섹션 주석으로 포함
 - **완료 조건**:
-  - [ ] 세 파일 모두 `backend/db/migrations/` 하위에 순번 prefix로 존재
-  - [ ] `psql`로 직접 실행 시 오류 없이 테이블 및 인덱스 생성됨
-  - [ ] `\d todos`로 FK 제약조건 및 기본값 확인
-  - [ ] 인덱스 5개 모두 존재 확인 (`\di`)
+  - [x] 세 파일 모두 `backend/db/migrations/` 하위에 순번 prefix로 존재
+  - [x] `psql`로 직접 실행 시 오류 없이 테이블 및 인덱스 생성됨
+  - [x] `\d todos`로 FK 제약조건 및 기본값 확인
+  - [x] 인덱스 5개 모두 존재 확인 (`\di`)
 - **의존성**: TASK-DB-01
 - **예상 소요**: 45분
 
@@ -115,18 +115,18 @@ TASK-FE-01
 
 - **목적**: SQL 마이그레이션 파일을 순서대로 자동 적용하고 중복 실행을 방지하는 스크립트를 구축한다.
 - **작업 내용**:
-  - [ ] `backend/db/migrate.js` 스크립트 작성
-    - [ ] `schema_migrations` 추적 테이블 자동 생성
-    - [ ] `migrations/` 디렉토리의 `.sql` 파일을 파일명 기준 오름차순 정렬 후 순차 실행
-    - [ ] 이미 적용된 파일은 건너뜀 (멱등성 보장)
-    - [ ] 실행 실패 시 트랜잭션 롤백 후 `process.exit(1)`
-  - [ ] `backend/package.json` scripts 등록
-    - [ ] `"db:migrate": "node db/migrate.js"`
-    - [ ] `"db:migrate:fresh"`: 개발 전용 DB 초기화 후 마이그레이션 재실행
+  - [x] `backend/db/migrate.js` 스크립트 작성
+    - [x] `schema_migrations` 추적 테이블 자동 생성
+    - [x] `migrations/` 디렉토리의 `.sql` 파일을 파일명 기준 오름차순 정렬 후 순차 실행
+    - [x] 이미 적용된 파일은 건너뜀 (멱등성 보장)
+    - [x] 실행 실패 시 트랜잭션 롤백 후 `process.exit(1)`
+  - [x] `backend/package.json` scripts 등록
+    - [x] `"db:migrate": "node db/migrate.js"`
+    - [x] `"db:migrate:fresh"`: 개발 전용 DB 초기화 후 마이그레이션 재실행
 - **완료 조건**:
-  - [ ] `npm run db:migrate` 최초 실행 시 3개 파일 모두 적용
-  - [ ] 재실행 시 중복 오류 없이 "already applied" 메시지 출력
-  - [ ] `SELECT * FROM schema_migrations;` 결과에 3개 레코드 존재
+  - [x] `npm run db:migrate` 최초 실행 시 3개 파일 모두 적용
+  - [x] 재실행 시 중복 오류 없이 "already applied" 메시지 출력
+  - [x] `SELECT * FROM schema_migrations;` 결과에 3개 레코드 존재
 - **의존성**: TASK-DB-02
 - **예상 소요**: 45분
 
