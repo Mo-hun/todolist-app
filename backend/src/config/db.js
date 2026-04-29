@@ -15,20 +15,17 @@ pool.on("error", (error) => {
 });
 
 async function checkConnection() {
-  try {
-    const result = await pool.query("SELECT NOW() AS now");
-    console.log(`DB connected: ${result.rows[0].now.toISOString()}`);
-    return result.rows[0];
-  } catch (error) {
-    console.error("DB connection failed:", error.message);
-    process.exit(1);
-  }
+  const result = await pool.query("SELECT NOW() AS now");
+  console.log(`DB connected: ${result.rows[0].now.toISOString()}`);
+  return result.rows[0];
 }
 
+/* istanbul ignore next */
 if (require.main === module) {
   checkConnection()
     .then(() => pool.end())
-    .catch(async () => {
+    .catch(async (error) => {
+      console.error("DB connection failed:", error.message);
       await pool.end().catch(() => {});
       process.exit(1);
     });

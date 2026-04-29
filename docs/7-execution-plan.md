@@ -175,17 +175,17 @@ TASK-FE-01
 
 - **목적**: Node.js 24 + Express 5 기반 백엔드 프로젝트의 기초 골격을 구성하고 환경변수 및 디렉토리 구조를 확립한다.
 - **작업 내용**:
-  - [ ] `backend/` 디렉토리 생성 및 `npm init -y` 실행
-  - [ ] 프로덕션 의존성 설치: `express@^5`, `pg`, `bcrypt`, `jsonwebtoken`, `dotenv`, `cors`, `helmet`
-  - [ ] 개발 의존성 설치: `nodemon`, `jest`, `supertest`
-  - [ ] `backend/src/` 하위 디렉토리 생성: `routes/`, `controllers/`, `services/`, `repositories/`, `middlewares/`, `utils/`, `config/`
-  - [ ] `.env`, `.env.example` 파일 작성
-  - [ ] `.gitignore`에 `.env`, `node_modules/` 추가
-  - [ ] `package.json` scripts: `"dev": "nodemon src/server.js"`, `"start": "node src/server.js"`
+  - [x] `backend/` 디렉토리 생성 및 `npm init -y` 실행
+  - [x] 프로덕션 의존성 설치: `express@^5`, `pg`, `bcrypt`, `jsonwebtoken`, `dotenv`, `cors`, `helmet`
+  - [x] 개발 의존성 설치: `nodemon`, `jest`, `supertest`
+  - [x] `backend/src/` 하위 디렉토리 생성: `routes/`, `controllers/`, `services/`, `repositories/`, `middlewares/`, `utils/`, `config/`
+  - [x] `.env`, `.env.example` 파일 작성
+  - [x] `.gitignore`에 `.env`, `node_modules/` 추가
+  - [x] `package.json` scripts: `"dev": "nodemon src/server.js"`, `"start": "node src/server.js"`
 - **완료 조건**:
-  - [ ] `npm run dev` 실행 시 서버가 지정 PORT에서 기동됨
-  - [ ] 디렉토리 구조가 설계(`docs/4-architecture-principles.md`)와 일치함
-  - [ ] `.env`가 `.gitignore`에 포함되어 버전 관리에서 제외됨
+  - [x] `npm run dev` 실행 시 서버가 지정 PORT에서 기동됨
+  - [x] 디렉토리 구조가 설계(`docs/4-architecture-principles.md`)와 일치함
+  - [x] `.env`가 `.gitignore`에 포함되어 버전 관리에서 제외됨
 - **의존성**: TASK-DB-01
 - **예상 소요**: 30분
 
@@ -195,14 +195,14 @@ TASK-FE-01
 
 - **목적**: PostgreSQL 연결 Pool을 싱글턴으로 구성하고 앱 전역에서 재사용 가능하게 한다.
 - **작업 내용**:
-  - [ ] `backend/src/config/db.js`: `pg.Pool` 인스턴스를 `.env` 값 기반으로 초기화
-  - [ ] `backend/src/config/env.js`: `process.env` 값을 읽어 상수로 export (PORT, JWT_SECRET, BCRYPT_COST 등)
-  - [ ] DB 접속 실패 시 명확한 에러 메시지 출력 및 `process.exit(1)` 처리
-  - [ ] `pool.on('error', ...)` 핸들러 등록
+  - [x] `backend/src/config/db.js`: `pg.Pool` 인스턴스를 `.env` 값 기반으로 초기화
+  - [x] `backend/src/config/env.js`: `process.env` 값을 읽어 상수로 export (PORT, JWT_SECRET, BCRYPT_COST 등)
+  - [x] DB 접속 실패 시 명확한 에러 메시지 출력 및 `process.exit(1)` 처리
+  - [x] `pool.on('error', ...)` 핸들러 등록
 - **완료 조건**:
-  - [ ] 앱 기동 시 DB 연결 성공 로그 출력
-  - [ ] 잘못된 DB 설정 시 프로세스가 종료됨
-  - [ ] `pool` 인스턴스가 다른 모듈에서 import하여 사용 가능함
+  - [x] 앱 기동 시 DB 연결 성공 로그 출력
+  - [x] 잘못된 DB 설정 시 프로세스가 종료됨
+  - [x] `pool` 인스턴스가 다른 모듈에서 import하여 사용 가능함
 - **의존성**: TASK-BE-01, TASK-DB-01
 - **예상 소요**: 30분
 
@@ -212,23 +212,23 @@ TASK-FE-01
 
 - **목적**: JWT 인증 검증, 전역 에러 처리, 404 처리를 미들웨어로 분리한다.
 - **작업 내용**:
-  - [ ] `AppError` 커스텀 에러 클래스 작성 (`statusCode`, `code`, `message` 포함)
-  - [ ] `backend/src/middlewares/authenticateToken.js` 구현
-    - [ ] `Authorization: Bearer <token>` 헤더 파싱
-    - [ ] `jsonwebtoken.verify()`로 HS-512 서명 검증
-    - [ ] 검증 성공 시 `req.user = { id, email }` 주입
-    - [ ] 토큰 누락 → `401 UNAUTHORIZED`, 만료/위조 → `401 TOKEN_INVALID`
-  - [ ] `backend/src/middlewares/errorHandler.js` 구현
-    - [ ] `err.statusCode`, `err.code`, `err.message` 기반 에러 응답 포맷 적용
-    - [ ] 에러 응답 포맷: `{ success: false, error: { code, message } }`
-    - [ ] 예상치 못한 에러 → `500 INTERNAL_SERVER_ERROR`
-    - [ ] `500` 응답에 스택 트레이스·SQL 미포함
-  - [ ] `backend/src/middlewares/notFound.js` 구현: 매칭 없는 라우트 `404` 응답
+  - [x] `AppError` 커스텀 에러 클래스 작성 (`statusCode`, `code`, `message` 포함)
+  - [x] `backend/src/middlewares/authenticateToken.js` 구현
+    - [x] `Authorization: Bearer <token>` 헤더 파싱
+    - [x] `jsonwebtoken.verify()`로 HS-512 서명 검증
+    - [x] 검증 성공 시 `req.user = { id, email }` 주입
+    - [x] 토큰 누락 → `401 UNAUTHORIZED`, 만료/위조 → `401 TOKEN_INVALID`
+  - [x] `backend/src/middlewares/errorHandler.js` 구현
+    - [x] `err.statusCode`, `err.code`, `err.message` 기반 에러 응답 포맷 적용
+    - [x] 에러 응답 포맷: `{ success: false, error: { code, message } }`
+    - [x] 예상치 못한 에러 → `500 INTERNAL_SERVER_ERROR`
+    - [x] `500` 응답에 스택 트레이스·SQL 미포함
+  - [x] `backend/src/middlewares/notFound.js` 구현: 매칭 없는 라우트 `404` 응답
 - **완료 조건**:
-  - [ ] 유효한 JWT로 보호 라우트 접근 시 `req.user`가 정상 주입됨
-  - [ ] 토큰 없이 보호 라우트 접근 시 `401` 응답
-  - [ ] 존재하지 않는 경로 요청 시 `404` 응답
-  - [ ] Service에서 `AppError` throw 시 `errorHandler`가 올바른 포맷으로 응답함
+  - [x] 유효한 JWT로 보호 라우트 접근 시 `req.user`가 정상 주입됨
+  - [x] 토큰 없이 보호 라우트 접근 시 `401` 응답
+  - [x] 존재하지 않는 경로 요청 시 `404` 응답
+  - [x] Service에서 `AppError` throw 시 `errorHandler`가 올바른 포맷으로 응답함
 - **의존성**: TASK-BE-01, TASK-BE-04
 - **예상 소요**: 60분
 
@@ -238,20 +238,20 @@ TASK-FE-01
 
 - **목적**: JWT 발급/검증, 성공/에러 응답 생성, 공통 상수를 유틸리티로 분리한다.
 - **작업 내용**:
-  - [ ] `backend/src/utils/jwtUtils.js`
-    - [ ] `generateToken(payload)`: HS-512 서명, 만료시간 설정
-    - [ ] `verifyToken(token)`: 검증 후 payload 반환, 실패 시 `AppError` throw
-  - [ ] `backend/src/utils/responseHelper.js`
-    - [ ] `sendSuccess(res, data, statusCode = 200)`: `{ success: true, data }` 응답
-    - [ ] `sendError(res, code, message, statusCode)`: `{ success: false, error: { code, message } }` 응답
-  - [ ] `backend/src/utils/constants.js`
-    - [ ] HTTP 상태 코드 상수 (`HTTP_STATUS`)
-    - [ ] 에러 코드 상수 (`ERROR_CODE`: `DUPLICATE_EMAIL`, `NOT_FOUND`, `UNAUTHORIZED` 등)
-  - [ ] bcrypt 래퍼 함수: `hashPassword(plain)`, `comparePassword(plain, hash)` — cost 12+ 적용
+  - [x] `backend/src/utils/jwtUtils.js`
+    - [x] `generateToken(payload)`: HS-512 서명, 만료시간 설정
+    - [x] `verifyToken(token)`: 검증 후 payload 반환, 실패 시 `AppError` throw
+  - [x] `backend/src/utils/responseHelper.js`
+    - [x] `sendSuccess(res, data, statusCode = 200)`: `{ success: true, data }` 응답
+    - [x] `sendError(res, code, message, statusCode)`: `{ success: false, error: { code, message } }` 응답
+  - [x] `backend/src/utils/constants.js`
+    - [x] HTTP 상태 코드 상수 (`HTTP_STATUS`)
+    - [x] 에러 코드 상수 (`ERROR_CODE`: `DUPLICATE_EMAIL`, `NOT_FOUND`, `UNAUTHORIZED` 등)
+  - [x] bcrypt 래퍼 함수: `hashPassword(plain)`, `comparePassword(plain, hash)` — cost 12+ 적용
 - **완료 조건**:
-  - [ ] `generateToken` → `verifyToken` 왕복 테스트 통과
-  - [ ] `sendSuccess`, `sendError`가 각각 올바른 포맷의 JSON을 응답함
-  - [ ] `hashPassword` 결과가 `comparePassword`로 검증 가능함
+  - [x] `generateToken` → `verifyToken` 왕복 테스트 통과
+  - [x] `sendSuccess`, `sendError`가 각각 올바른 포맷의 JSON을 응답함
+  - [x] `hashPassword` 결과가 `comparePassword`로 검증 가능함
 - **의존성**: TASK-BE-01
 - **예상 소요**: 45분
 
@@ -261,23 +261,23 @@ TASK-FE-01
 
 - **목적**: 회원가입, 로그인, 회원탈퇴 API를 Repository → Service → Controller → Route 순서로 구현한다.
 - **작업 내용**:
-  - [ ] **Repository** `userRepository.js`: `findByEmail`, `create`, `deleteById`
-  - [ ] **Service** `authService.js`
-    - [ ] `register`: 이메일 중복 검사(BR-AUTH-02), bcrypt 해싱, 사용자 생성
-    - [ ] `login`: 이메일 조회, 비밀번호 검증, JWT 발급
-    - [ ] `withdraw`: 사용자 존재 확인 후 Hard Delete (BR-DATA-05)
-  - [ ] **Controller** `authController.js`: `register`(201), `login`(200+JWT), `withdraw`(200)
-  - [ ] **Route** `authRoutes.js`
-    - [ ] `POST /api/v1/auth/register`
-    - [ ] `POST /api/v1/auth/login`
-    - [ ] `DELETE /api/v1/auth/me` (authenticateToken 적용)
-  - [ ] 이메일 형식 및 비밀번호 최소 길이 입력값 검증
+  - [x] **Repository** `userRepository.js`: `findByEmail`, `create`, `deleteById`
+  - [x] **Service** `authService.js`
+    - [x] `register`: 이메일 중복 검사(BR-AUTH-02), bcrypt 해싱, 사용자 생성
+    - [x] `login`: 이메일 조회, 비밀번호 검증, JWT 발급
+    - [x] `withdraw`: 사용자 존재 확인 후 Hard Delete (BR-DATA-05)
+  - [x] **Controller** `authController.js`: `register`(201), `login`(200+JWT), `withdraw`(200)
+  - [x] **Route** `authRoutes.js`
+    - [x] `POST /api/v1/auth/register`
+    - [x] `POST /api/v1/auth/login`
+    - [x] `DELETE /api/v1/auth/me` (authenticateToken 적용)
+  - [x] 이메일 형식 및 비밀번호 최소 길이 입력값 검증
 - **완료 조건**:
-  - [ ] 신규 이메일 회원가입 시 `201` 응답
-  - [ ] 중복 이메일 가입 시 `409 DUPLICATE_EMAIL` 에러 응답 (BR-AUTH-02)
-  - [ ] 올바른 자격증명 로그인 시 JWT 포함 `200` 응답
-  - [ ] 잘못된 비밀번호 로그인 시 `401` 에러 응답
-  - [ ] 회원탈퇴 시 관련 데이터 Hard Delete 및 `200` 응답 (BR-DATA-05)
+  - [x] 신규 이메일 회원가입 시 `201` 응답
+  - [x] 중복 이메일 가입 시 `409 DUPLICATE_EMAIL` 에러 응답 (BR-AUTH-02)
+  - [x] 올바른 자격증명 로그인 시 JWT 포함 `200` 응답
+  - [x] 잘못된 비밀번호 로그인 시 `401` 에러 응답
+  - [x] 회원탈퇴 시 관련 데이터 Hard Delete 및 `200` 응답 (BR-DATA-05)
 - **의존성**: TASK-BE-02, TASK-BE-03, TASK-BE-04, TASK-DB-02
 - **예상 소요**: 90분
 
@@ -287,23 +287,23 @@ TASK-FE-01
 
 - **목적**: 카테고리 목록 조회, 생성, 수정, 삭제 API를 구현하고 소유권 검증 및 삭제 시 할일 보존 규칙을 적용한다.
 - **작업 내용**:
-  - [ ] **Repository** `categoryRepository.js`: `findAllByUserId`, `findById`, `create`, `update`, `deleteById`
-  - [ ] **Service** `categoryService.js`
-    - [ ] `getCategories(userId)`: 소유 카테고리 목록 반환
-    - [ ] `createCategory(userId, { name })`: 생성
-    - [ ] `updateCategory(userId, categoryId, { name })`: 소유권 검증(BR-AUTH-03) 후 수정
-    - [ ] `deleteCategory(userId, categoryId)`: 소유권 검증(BR-AUTH-03) 후 삭제 (DB FK SET NULL으로 할일 보존, BR-DATA-03)
-  - [ ] **Controller** `categoryController.js`: `getCategories`, `createCategory`, `updateCategory`, `deleteCategory`
-  - [ ] **Route** `categoryRoutes.js` (모든 라우트 `authenticateToken` 적용)
-    - [ ] `GET /api/v1/categories`
-    - [ ] `POST /api/v1/categories`
-    - [ ] `PUT /api/v1/categories/:id`
-    - [ ] `DELETE /api/v1/categories/:id`
+  - [x] **Repository** `categoryRepository.js`: `findAllByUserId`, `findById`, `create`, `update`, `deleteById`
+  - [x] **Service** `categoryService.js`
+    - [x] `getCategories(userId)`: 소유 카테고리 목록 반환
+    - [x] `createCategory(userId, { name })`: 생성
+    - [x] `updateCategory(userId, categoryId, { name })`: 소유권 검증(BR-AUTH-03) 후 수정
+    - [x] `deleteCategory(userId, categoryId)`: 소유권 검증(BR-AUTH-03) 후 삭제 (DB FK SET NULL으로 할일 보존, BR-DATA-03)
+  - [x] **Controller** `categoryController.js`: `getCategories`, `createCategory`, `updateCategory`, `deleteCategory`
+  - [x] **Route** `categoryRoutes.js` (모든 라우트 `authenticateToken` 적용)
+    - [x] `GET /api/v1/categories`
+    - [x] `POST /api/v1/categories`
+    - [x] `PUT /api/v1/categories/:id`
+    - [x] `DELETE /api/v1/categories/:id`
 - **완료 조건**:
-  - [ ] `GET /api/v1/categories`: 인증 사용자의 카테고리 목록만 반환
-  - [ ] `POST /api/v1/categories`: 카테고리 생성 후 `201` 응답
-  - [ ] `PUT /api/v1/categories/:id`: 타인 카테고리 수정 시 `403` 에러 (BR-AUTH-03)
-  - [ ] `DELETE /api/v1/categories/:id`: 삭제 후 해당 카테고리의 할일이 `category_id = NULL`로 보존 (BR-DATA-03)
+  - [x] `GET /api/v1/categories`: 인증 사용자의 카테고리 목록만 반환
+  - [x] `POST /api/v1/categories`: 카테고리 생성 후 `201` 응답
+  - [x] `PUT /api/v1/categories/:id`: 타인 카테고리 수정 시 `403` 에러 (BR-AUTH-03)
+  - [x] `DELETE /api/v1/categories/:id`: 삭제 후 해당 카테고리의 할일이 `category_id = NULL`로 보존 (BR-DATA-03)
 - **의존성**: TASK-BE-02, TASK-BE-03, TASK-BE-04, TASK-DB-02
 - **예상 소요**: 75분
 
@@ -313,24 +313,24 @@ TASK-FE-01
 
 - **목적**: 할일 목록 조회, 생성, 수정, 삭제, 완료 토글 API를 구현하고 비즈니스 규칙을 적용한다.
 - **작업 내용**:
-  - [ ] **Repository** `todoRepository.js`: `findAllByUserId(userId, filters)`, `findById`, `create`, `update`, `deleteById`, `toggleComplete`
-  - [ ] **Service** `todoService.js`
-    - [ ] `getTodos(userId, filters)`: 목록 반환, 완료된 항목은 기한초과 분류 제외 (BR-DATA-02)
-    - [ ] `createTodo`, `getTodoById`, `updateTodo`, `deleteTodo`: 소유권 검증 (BR-AUTH-03)
-    - [ ] `toggleComplete(userId, todoId)`: 소유권 검증 후 완료 상태 반전
-  - [ ] **Controller** `todoController.js`: `getTodos`, `createTodo`, `getTodoById`, `updateTodo`, `deleteTodo`, `toggleComplete`
-  - [ ] **Route** `todoRoutes.js` (모든 라우트 `authenticateToken` 적용)
-    - [ ] `GET /api/v1/todos`
-    - [ ] `POST /api/v1/todos`
-    - [ ] `GET /api/v1/todos/:id`
-    - [ ] `PUT /api/v1/todos/:id`
-    - [ ] `DELETE /api/v1/todos/:id`
-    - [ ] `PATCH /api/v1/todos/:id/complete`
+  - [x] **Repository** `todoRepository.js`: `findAllByUserId(userId, filters)`, `findById`, `create`, `update`, `deleteById`, `toggleComplete`
+  - [x] **Service** `todoService.js`
+    - [x] `getTodos(userId, filters)`: 목록 반환, 완료된 항목은 기한초과 분류 제외 (BR-DATA-02)
+    - [x] `createTodo`, `getTodoById`, `updateTodo`, `deleteTodo`: 소유권 검증 (BR-AUTH-03)
+    - [x] `toggleComplete(userId, todoId)`: 소유권 검증 후 완료 상태 반전
+  - [x] **Controller** `todoController.js`: `getTodos`, `createTodo`, `getTodoById`, `updateTodo`, `deleteTodo`, `toggleComplete`
+  - [x] **Route** `todoRoutes.js` (모든 라우트 `authenticateToken` 적용)
+    - [x] `GET /api/v1/todos`
+    - [x] `POST /api/v1/todos`
+    - [x] `GET /api/v1/todos/:id`
+    - [x] `PUT /api/v1/todos/:id`
+    - [x] `DELETE /api/v1/todos/:id`
+    - [x] `PATCH /api/v1/todos/:id/complete`
 - **완료 조건**:
-  - [ ] `GET /api/v1/todos`: 인증 사용자의 할일만 반환, 완료된 항목은 기한초과 필드 `false` (BR-DATA-02)
-  - [ ] `POST /api/v1/todos`: 생성 후 `201` 응답
-  - [ ] `PUT /api/v1/todos/:id`: 타인 할일 수정 시 `403` (BR-AUTH-03)
-  - [ ] `PATCH /api/v1/todos/:id/complete`: 완료 상태가 반전되어 응답됨
+  - [x] `GET /api/v1/todos`: 인증 사용자의 할일만 반환, 완료된 항목은 기한초과 필드 `false` (BR-DATA-02)
+  - [x] `POST /api/v1/todos`: 생성 후 `201` 응답
+  - [x] `PUT /api/v1/todos/:id`: 타인 할일 수정 시 `403` (BR-AUTH-03)
+  - [x] `PATCH /api/v1/todos/:id/complete`: 완료 상태가 반전되어 응답됨
 - **의존성**: TASK-BE-02, TASK-BE-03, TASK-BE-04, TASK-BE-06, TASK-DB-02
 - **예상 소요**: 90분
 
@@ -340,18 +340,18 @@ TASK-FE-01
 
 - **목적**: 구현된 라우터·미들웨어를 Express 앱에 통합하고 실제 서버 기동을 검증한다.
 - **작업 내용**:
-  - [ ] `backend/src/app.js` 생성
-    - [ ] `helmet()`, `cors()`, `express.json()` 전역 미들웨어 등록
-    - [ ] `GET /api/v1/health` 헬스체크 엔드포인트 등록 (`SELECT 1` 포함)
-    - [ ] `authRoutes`, `categoryRoutes`, `todoRoutes` 마운트 (`/api/v1`)
-    - [ ] `notFound`, `errorHandler` 미들웨어 최후 등록
-  - [ ] `backend/src/server.js` 생성: DB 연결 확인 후 `app.listen(PORT)`
-  - [ ] Express 5 비동기 라우트 핸들러 에러 자동 전파 동작 확인
+  - [x] `backend/src/app.js` 생성
+    - [x] `helmet()`, `cors()`, `express.json()` 전역 미들웨어 등록
+    - [x] `GET /api/v1/health` 헬스체크 엔드포인트 등록 (`SELECT 1` 포함)
+    - [x] `authRoutes`, `categoryRoutes`, `todoRoutes` 마운트 (`/api/v1`)
+    - [x] `notFound`, `errorHandler` 미들웨어 최후 등록
+  - [x] `backend/src/server.js` 생성: DB 연결 확인 후 `app.listen(PORT)`
+  - [x] Express 5 비동기 라우트 핸들러 에러 자동 전파 동작 확인
 - **완료 조건**:
-  - [ ] `npm run dev` 실행 시 "Server running on port XXXX" 및 "DB connected" 로그 출력
-  - [ ] `GET /api/v1/health` → `200 { success: true, data: { status: "ok" } }`
-  - [ ] 미등록 경로 요청 시 `404 NOT_FOUND` 응답
-  - [ ] Service `AppError`가 `errorHandler`까지 전파되어 올바른 포맷으로 응답됨
+  - [x] `npm run dev` 실행 시 "Server running on port XXXX" 및 "DB connected" 로그 출력
+  - [x] `GET /api/v1/health` → `200 { success: true, data: { status: "ok" } }`
+  - [x] 미등록 경로 요청 시 `404 NOT_FOUND` 응답
+  - [x] Service `AppError`가 `errorHandler`까지 전파되어 올바른 포맷으로 응답됨
 - **의존성**: TASK-BE-03, TASK-BE-04, TASK-BE-05, TASK-BE-06, TASK-BE-07
 - **예상 소요**: 45분
 
@@ -361,29 +361,29 @@ TASK-FE-01
 
 - **목적**: Supertest를 사용한 통합 테스트로 각 API의 정상 동작 및 에러 케이스를 자동 검증한다.
 - **작업 내용**:
-  - [ ] 테스트 환경 설정: `.env.test` 분리, 테스트용 DB 스키마 초기화 스크립트
-  - [ ] **인증 테스트** `backend/__tests__/auth.test.js`
-    - [ ] 회원가입 성공 (201)
-    - [ ] 중복 이메일 가입 실패 (409, BR-AUTH-02)
-    - [ ] 로그인 성공 → JWT 수신 확인
-    - [ ] 잘못된 비밀번호 로그인 실패 (401)
-    - [ ] 미인증 보호 라우트 접근 실패 (401)
-    - [ ] 회원탈퇴 후 데이터 삭제 확인 (BR-DATA-05)
-  - [ ] **카테고리 테스트** `backend/__tests__/category.test.js`
-    - [ ] CRUD 정상 동작
-    - [ ] 타인 카테고리 수정·삭제 시 `403` (BR-AUTH-03)
-    - [ ] 카테고리 삭제 후 할일 미분류 보존 확인 (BR-DATA-03)
-  - [ ] **할일 테스트** `backend/__tests__/todo.test.js`
-    - [ ] CRUD 정상 동작
-    - [ ] 타인 할일 접근 시 `403` (BR-AUTH-03)
-    - [ ] 완료 토글 동작 확인
-    - [ ] 완료된 할일의 기한초과 필드 검증 (BR-DATA-02)
-  - [ ] `beforeEach` / `afterAll` DB 정리
-  - [ ] `"test": "jest --runInBand"` scripts 등록
+  - [x] 테스트 환경 설정: `.env.test` 분리, 테스트용 DB 스키마 초기화 스크립트
+  - [x] **인증 테스트** `backend/__tests__/auth.test.js`
+    - [x] 회원가입 성공 (201)
+    - [x] 중복 이메일 가입 실패 (409, BR-AUTH-02)
+    - [x] 로그인 성공 → JWT 수신 확인
+    - [x] 잘못된 비밀번호 로그인 실패 (401)
+    - [x] 미인증 보호 라우트 접근 실패 (401)
+    - [x] 회원탈퇴 후 데이터 삭제 확인 (BR-DATA-05)
+  - [x] **카테고리 테스트** `backend/__tests__/category.test.js`
+    - [x] CRUD 정상 동작
+    - [x] 타인 카테고리 수정·삭제 시 `403` (BR-AUTH-03)
+    - [x] 카테고리 삭제 후 할일 미분류 보존 확인 (BR-DATA-03)
+  - [x] **할일 테스트** `backend/__tests__/todo.test.js`
+    - [x] CRUD 정상 동작
+    - [x] 타인 할일 접근 시 `403` (BR-AUTH-03)
+    - [x] 완료 토글 동작 확인
+    - [x] 완료된 할일의 기한초과 필드 검증 (BR-DATA-02)
+  - [x] `beforeEach` / `afterAll` DB 정리
+  - [x] `"test": "jest --runInBand"` scripts 등록
 - **완료 조건**:
-  - [ ] `npm test` 실행 시 전체 테스트 통과 (0 failed)
-  - [ ] 모든 비즈니스 규칙(BR-AUTH-02, BR-AUTH-03, BR-DATA-02, BR-DATA-03, BR-DATA-05)에 대한 테스트 케이스 존재
-  - [ ] 테스트가 독립적으로 실행 가능하며 순서에 의존하지 않음
+  - [x] `npm test` 실행 시 전체 테스트 통과 (0 failed)
+  - [x] 모든 비즈니스 규칙(BR-AUTH-02, BR-AUTH-03, BR-DATA-02, BR-DATA-03, BR-DATA-05)에 대한 테스트 케이스 존재
+  - [x] 테스트가 독립적으로 실행 가능하며 순서에 의존하지 않음
 - **의존성**: TASK-BE-05, TASK-BE-06, TASK-BE-07, TASK-BE-08
 - **예상 소요**: 90분
 
@@ -395,17 +395,17 @@ TASK-FE-01
 
 - **목적**: Vite 기반 React 19 프로젝트를 생성하고 필요한 패키지를 설치하며 디렉토리 구조를 확립한다.
 - **작업 내용**:
-  - [ ] `npm create vite@latest frontend -- --template react` 실행
-  - [ ] 패키지 설치: `react-router-dom`, `axios`, `@tanstack/react-query`, `zustand`, `tailwindcss`, `postcss`, `autoprefixer`
-  - [ ] `tailwind.config.js`, `postcss.config.js` 설정 및 `index.css`에 Tailwind 디렉티브 추가
-  - [ ] `vite.config.js`에 경로 별칭(`@/`) 설정
-  - [ ] 디렉토리 생성: `src/api/`, `src/components/common/`, `src/components/todo/`, `src/components/category/`, `src/hooks/`, `src/pages/`, `src/stores/`, `src/utils/`, `src/router/`
-  - [ ] `src/main.jsx`에 `QueryClientProvider` 래핑 설정
-  - [ ] `frontend/.env` 파일 생성 및 `VITE_API_BASE_URL` 환경변수 정의
+  - [x] `npm create vite@latest frontend -- --template react` 실행
+  - [x] 패키지 설치: `react-router-dom`, `axios`, `@tanstack/react-query`, `zustand`, `tailwindcss`, `postcss`, `autoprefixer`
+  - [x] `tailwind.config.js`, `postcss.config.js` 설정 및 `index.css`에 Tailwind 디렉티브 추가
+  - [x] `vite.config.js`에 경로 별칭(`@/`) 설정
+  - [x] 디렉토리 생성: `src/api/`, `src/components/common/`, `src/components/todo/`, `src/components/category/`, `src/hooks/`, `src/pages/`, `src/stores/`, `src/utils/`, `src/router/`
+  - [x] `src/main.jsx`에 `QueryClientProvider` 래핑 설정
+  - [x] `frontend/.env` 파일 생성 및 `VITE_API_BASE_URL` 환경변수 정의
 - **완료 조건**:
-  - [ ] `npm run dev` 실행 시 브라우저에서 Vite 기본 페이지 정상 렌더링
-  - [ ] Tailwind 유틸리티 클래스가 적용됨 (임시 클래스 테스트)
-  - [ ] 모든 디렉토리가 정의된 구조대로 생성되어 있음
+  - [x] `npm run dev` 실행 시 브라우저에서 Vite 기본 페이지 정상 렌더링
+  - [x] Tailwind 유틸리티 클래스가 적용됨 (임시 클래스 테스트)
+  - [x] 모든 디렉토리가 정의된 구조대로 생성되어 있음
 - **의존성**: 없음
 - **예상 소요**: 30분
 

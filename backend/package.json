@@ -4,6 +4,10 @@
   "private": true,
   "type": "commonjs",
   "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "test": "jest --runInBand",
+    "test:db:reset": "node db/testSetup.js",
     "db:migrate": "node db/migrate.js",
     "db:migrate:fresh": "node db/migrate.js --fresh",
     "db:seed": "node db/seed.js",
@@ -11,7 +15,18 @@
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
     "dotenv": "^17.4.2",
-    "pg": "^8.20.0"
+    "express": "^5.2.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.10.1",
+    "pg": "^8.20.0",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "jest": "^30.3.0",
+    "nodemon": "^3.1.14",
+    "supertest": "^7.2.2"
   }
 }
