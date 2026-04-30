@@ -1,3 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .dark {
+    color-scheme: dark;
+  }
+  
+  .dark body {
+    @apply bg-gray-900 text-gray-100;
+  }
+  
+  .dark .bg-white {
+    @apply bg-gray-800;
+  }
+  
+  .dark .bg-\[\#F2F2F7\] {
+    @apply bg-gray-700;
+  }
+  
+  .dark .bg-\[\#FAFAFA\] {
+    @apply bg-gray-700;
+  }
+  
+  .dark .text-black {
+    @apply text-gray-100;
+  }
+  
+  .dark .text-text-secondary {
+    @apply text-gray-400;
+  }
+  
+  .dark .border-border-grid {
+    @apply border-gray-600;
+  }
+  
+  .dark .border-gray-300 {
+    @apply border-gray-600;
+  }
+  
+  .dark input,
+  .dark select,
+  .dark textarea {
+    @apply bg-gray-800 text-gray-100 border-gray-600;
+  }
+}

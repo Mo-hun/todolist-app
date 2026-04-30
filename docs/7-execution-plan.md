@@ -415,16 +415,16 @@ TASK-FE-01
 
 - **목적**: 백엔드와 통신하는 axios 인스턴스 및 도메인별 API 함수를 구현하여 모든 HTTP 요청의 기반을 마련한다.
 - **작업 내용**:
-  - [ ] `src/api/client.js`: axios 인스턴스 생성, `VITE_API_BASE_URL` 기반 `baseURL` 설정
-  - [ ] 요청 인터셉터: `authStore`에서 토큰을 읽어 `Authorization: Bearer <token>` 헤더 자동 주입
-  - [ ] 응답 인터셉터: `401` 응답 시 `authStore` 초기화 후 `/login` 리다이렉트
-  - [ ] `src/api/authApi.js`: `login(credentials)`, `register(userData)` 함수
-  - [ ] `src/api/todoApi.js`: `getTodos(params)`, `createTodo(data)`, `updateTodo(id, data)`, `deleteTodo(id)`, `toggleTodo(id)` 함수
-  - [ ] `src/api/categoryApi.js`: `getCategories()`, `createCategory(data)`, `updateCategory(id, data)`, `deleteCategory(id)` 함수
+  - [x] `src/api/client.js`: axios 인스턴스 생성, `VITE_API_BASE_URL` 기반 `baseURL` 설정
+  - [x] 요청 인터셉터: `authStore`에서 토큰을 읽어 `Authorization: Bearer <token>` 헤더 자동 주입
+  - [x] 응답 인터셉터: `401` 응답 시 `authStore` 초기화 후 `/login` 리다이렉트
+  - [x] `src/api/authApi.js`: `login(credentials)`, `register(userData)` 함수
+  - [x] `src/api/todoApi.js`: `getTodos(params)`, `createTodo(data)`, `updateTodo(id, data)`, `deleteTodo(id)`, `toggleTodo(id)` 함수
+  - [x] `src/api/categoryApi.js`: `getCategories()`, `createCategory(data)`, `updateCategory(id, data)`, `deleteCategory(id)` 함수
 - **완료 조건**:
-  - [ ] axios 인스턴스가 모든 요청에 `Authorization` 헤더를 자동으로 포함함
-  - [ ] `401` 응답 시 자동 로그아웃 및 리다이렉트 동작
-  - [ ] 각 API 함수가 올바른 엔드포인트와 HTTP 메서드를 사용함
+  - [x] axios 인스턴스가 모든 요청에 `Authorization` 헤더를 자동으로 포함함
+  - [x] `401` 응답 시 자동 로그아웃 및 리다이렉트 동작
+  - [x] 각 API 함수가 올바른 엔드포인트와 HTTP 메서드를 사용함
 - **의존성**: TASK-FE-01
 - **예상 소요**: 45분
 
@@ -434,13 +434,13 @@ TASK-FE-01
 
 - **목적**: 전역 클라이언트 상태(인증, 할일 필터/정렬, 선택된 카테고리)를 Zustand로 관리한다.
 - **작업 내용**:
-  - [ ] `src/stores/authStore.js`: 상태(`token`, `user`, `isAuthenticated`), 액션(`setAuth`, `clearAuth`), `persist` 미들웨어로 `localStorage` 영속화
-  - [ ] `src/stores/todoStore.js`: 상태(`filter`, `sortBy`), 액션(`setFilter`, `setSortBy`)
-  - [ ] `src/stores/categoryStore.js`: 상태(`selectedCategoryId`), 액션(`selectCategory`, `clearCategory`)
+  - [x] `src/stores/authStore.js`: 상태(`token`, `user`, `isAuthenticated`), 액션(`setAuth`, `clearAuth`), `persist` 미들웨어로 `localStorage` 영속화
+  - [x] `src/stores/todoStore.js`: 상태(`filter`, `sortBy`), 액션(`setFilter`, `setSortBy`)
+  - [x] `src/stores/categoryStore.js`: 상태(`selectedCategoryId`), 액션(`selectCategory`, `clearCategory`)
 - **완료 조건**:
-  - [ ] 페이지 새로고침 후에도 `authStore`의 `token`, `user`가 유지됨
-  - [ ] `todoStore`의 필터/정렬 변경이 컴포넌트에 즉시 반영됨
-  - [ ] `categoryStore`의 선택 상태가 페이지 간 이동 시 유지됨
+  - [x] 페이지 새로고침 후에도 `authStore`의 `token`, `user`가 유지됨
+  - [x] `todoStore`의 필터/정렬 변경이 컴포넌트에 즉시 반영됨
+  - [x] `categoryStore`의 선택 상태가 페이지 간 이동 시 유지됨
 - **의존성**: TASK-FE-01
 - **예상 소요**: 40분
 
@@ -450,17 +450,17 @@ TASK-FE-01
 
 - **목적**: 프로젝트 전반에서 재사용되는 UI 기본 단위 컴포넌트를 구현하여 UI 일관성을 확보한다.
 - **작업 내용**:
-  - [ ] `src/components/common/Button.jsx`: `variant`(primary/secondary/danger), `size`, `disabled`, `loading` props; Tailwind 조건 클래스 적용
-  - [ ] `src/components/common/InputField.jsx`: `label`, `error`, `placeholder` props; 에러 메시지 표시 영역 포함
-  - [ ] `src/components/common/Modal.jsx`: `isOpen`, `onClose`, `title`, `children` props; 오버레이 클릭·ESC 키로 닫힘
-  - [ ] `src/components/common/Badge.jsx`: `color`(gray/orange/red/green) props; 할일 상태 표시용 색상 변형
-  - [ ] `src/components/common/Spinner.jsx`: Tailwind `animate-spin` 활용 로딩 표시
-  - [ ] `src/components/common/index.js`: 일괄 export
+  - [x] `src/components/common/Button.jsx`: `variant`(primary/secondary/danger), `size`, `disabled`, `loading` props; Tailwind 조건 클래스 적용
+  - [x] `src/components/common/InputField.jsx`: `label`, `error`, `placeholder` props; 에러 메시지 표시 영역 포함
+  - [x] `src/components/common/Modal.jsx`: `isOpen`, `onClose`, `title`, `children` props; 오버레이 클릭·ESC 키로 닫힘
+  - [x] `src/components/common/Badge.jsx`: `color`(gray/orange/red/green) props; 할일 상태 표시용 색상 변형
+  - [x] `src/components/common/Spinner.jsx`: Tailwind `animate-spin` 활용 로딩 표시
+  - [x] `src/components/common/index.js`: 일괄 export
 - **완료 조건**:
-  - [ ] 각 컴포넌트가 props에 따라 올바른 Tailwind 클래스를 렌더링함
-  - [ ] Modal의 ESC 키 닫힘 및 오버레이 클릭 닫힘 정상 동작
-  - [ ] Button `loading` 상태에서 Spinner 표시 및 클릭 비활성화
-  - [ ] `import { Button, Modal } from '@/components/common'` 형태로 임포트 가능
+  - [x] 각 컴포넌트가 props에 따라 올바른 Tailwind 클래스를 렌더링함
+  - [x] Modal의 ESC 키 닫힘 및 오버레이 클릭 닫힘 정상 동작
+  - [x] Button `loading` 상태에서 Spinner 표시 및 클릭 비활성화
+  - [x] `import { Button, Modal } from '@/components/common'` 형태로 임포트 가능
 - **의존성**: TASK-FE-01
 - **예상 소요**: 60분
 
@@ -470,20 +470,20 @@ TASK-FE-01
 
 - **목적**: React Router로 페이지 라우팅을 구성하고 인증 상태에 따른 접근 제어를 구현한다.
 - **작업 내용**:
-  - [ ] `src/router/PrivateRoute.jsx`: `authStore.isAuthenticated`가 `false`이면 `/login`으로 리다이렉트
-  - [ ] `src/router/PublicRoute.jsx`: 인증 사용자가 `/login`, `/register` 접근 시 `/`로 리다이렉트
-  - [ ] `src/router/AppRouter.jsx`:
-    - [ ] `/login` → `PublicRoute` → `LoginPage`
-    - [ ] `/register` → `PublicRoute` → `RegisterPage`
-    - [ ] `/` → `PrivateRoute` → `MainPage`
-    - [ ] `/categories` → `PrivateRoute` → `CategoryPage`
-    - [ ] `*` → `/`로 리다이렉트
-  - [ ] `src/main.jsx`에 `<BrowserRouter>` 래핑 추가
+  - [x] `src/router/PrivateRoute.jsx`: `authStore.isAuthenticated`가 `false`이면 `/login`으로 리다이렉트
+  - [x] `src/router/PublicRoute.jsx`: 인증 사용자가 `/login`, `/register` 접근 시 `/`로 리다이렉트
+  - [x] `src/router/AppRouter.jsx`:
+    - [x] `/login` → `PublicRoute` → `LoginPage`
+    - [x] `/register` → `PublicRoute` → `RegisterPage`
+    - [x] `/` → `PrivateRoute` → `MainPage`
+    - [x] `/categories` → `PrivateRoute` → `CategoryPage`
+    - [x] `*` → `/`로 리다이렉트
+  - [x] `src/main.jsx`에 `<BrowserRouter>` 래핑 추가
 - **완료 조건**:
-  - [ ] 비인증 상태에서 `/` 접근 시 `/login`으로 자동 이동
-  - [ ] 인증 상태에서 `/login` 접근 시 `/`로 자동 이동
-  - [ ] 존재하지 않는 경로 접근 시 `/`로 리다이렉트
-  - [ ] 브라우저 뒤로가기/앞으로가기 정상 동작
+  - [x] 비인증 상태에서 `/` 접근 시 `/login`으로 자동 이동
+  - [x] 인증 상태에서 `/login` 접근 시 `/`로 자동 이동
+  - [x] 존재하지 않는 경로 접근 시 `/`로 리다이렉트
+  - [x] 브라우저 뒤로가기/앞으로가기 정상 동작
 - **의존성**: TASK-FE-01, TASK-FE-03
 - **예상 소요**: 40분
 
@@ -493,17 +493,17 @@ TASK-FE-01
 
 - **목적**: 로그인·회원가입 페이지와 TanStack Query 기반 인증 훅을 구현하여 사용자 인증 흐름을 완성한다.
 - **작업 내용**:
-  - [ ] `src/hooks/useAuth.js`
-    - [ ] `useLoginMutation`: `authApi.login` 호출 → 성공 시 `authStore.setAuth()` 후 `/`로 이동
-    - [ ] `useRegisterMutation`: `authApi.register` 호출 → 성공 시 `/login`으로 이동
-  - [ ] `src/pages/LoginPage.jsx`: 이메일/비밀번호 입력 폼, 로딩 중 버튼 비활성화, 에러 메시지 표시, 회원가입 링크
-  - [ ] `src/pages/RegisterPage.jsx`: 이메일/비밀번호/비밀번호 확인 폼, 비밀번호 불일치 클라이언트 검증, 에러 메시지 표시
+  - [x] `src/hooks/useAuth.js`
+    - [x] `useLoginMutation`: `authApi.login` 호출 → 성공 시 `authStore.setAuth()` 후 `/`로 이동
+    - [x] `useRegisterMutation`: `authApi.register` 호출 → 성공 시 `/login`으로 이동
+  - [x] `src/pages/LoginPage.jsx`: 이메일/비밀번호 입력 폼, 로딩 중 버튼 비활성화, 에러 메시지 표시, 회원가입 링크
+  - [x] `src/pages/RegisterPage.jsx`: 이메일/비밀번호/비밀번호 확인 폼, 비밀번호 불일치 클라이언트 검증, 에러 메시지 표시
 - **완료 조건**:
-  - [ ] 올바른 자격증명 로그인 시 `authStore`에 토큰 저장 후 `/`로 이동
-  - [ ] 잘못된 자격증명 로그인 시 에러 메시지가 폼 아래에 표시됨
-  - [ ] 회원가입 성공 시 `/login`으로 이동
-  - [ ] 비밀번호 불일치 시 제출 전 클라이언트 에러 표시
-  - [ ] 요청 중 버튼이 비활성화되고 Spinner 표시
+  - [x] 올바른 자격증명 로그인 시 `authStore`에 토큰 저장 후 `/`로 이동
+  - [x] 잘못된 자격증명 로그인 시 에러 메시지가 폼 아래에 표시됨
+  - [x] 회원가입 성공 시 `/login`으로 이동
+  - [x] 비밀번호 불일치 시 제출 전 클라이언트 에러 표시
+  - [x] 요청 중 버튼이 비활성화되고 Spinner 표시
 - **의존성**: TASK-FE-02, TASK-FE-03, TASK-FE-04, TASK-FE-05
 - **예상 소요**: 60분
 
@@ -513,17 +513,17 @@ TASK-FE-01
 
 - **목적**: 카테고리 CRUD 기능을 위한 훅, 컴포넌트, 페이지를 구현한다.
 - **작업 내용**:
-  - [ ] `src/hooks/useCategories.js`: `useGetCategories`, `useCreateCategoryMutation`, `useUpdateCategoryMutation`, `useDeleteCategoryMutation` (성공 시 `['categories']` 쿼리 무효화)
-  - [ ] `src/components/category/CategoryForm.jsx`: 이름 입력, 생성/수정 모드 분기
-  - [ ] `src/components/category/CategoryItem.jsx`: 카테고리 이름, 수정/삭제 버튼, 삭제 시 확인 Modal
-  - [ ] `src/components/category/CategoryList.jsx`: `useGetCategories` 사용, 로딩 시 `Spinner`, 빈 목록 안내 문구
-  - [ ] `src/components/category/index.js`: 일괄 export
-  - [ ] `src/pages/CategoryPage.jsx`: `CategoryList` + Modal 내 `CategoryForm` 조합
+  - [x] `src/hooks/useCategories.js`: `useGetCategories`, `useCreateCategoryMutation`, `useUpdateCategoryMutation`, `useDeleteCategoryMutation` (성공 시 `['categories']` 쿼리 무효화)
+  - [x] `src/components/category/CategoryForm.jsx`: 이름 입력, 생성/수정 모드 분기
+  - [x] `src/components/category/CategoryItem.jsx`: 카테고리 이름, 수정/삭제 버튼, 삭제 시 확인 Modal
+  - [x] `src/components/category/CategoryList.jsx`: `useGetCategories` 사용, 로딩 시 `Spinner`, 빈 목록 안내 문구
+  - [x] `src/components/category/index.js`: 일괄 export
+  - [x] `src/pages/CategoryPage.jsx`: `CategoryList` + Modal 내 `CategoryForm` 조합
 - **완료 조건**:
-  - [ ] 카테고리 생성 후 목록이 즉시 갱신됨 (쿼리 무효화 확인)
-  - [ ] 수정 Modal에 기존 이름이 채워짐
-  - [ ] 삭제 확인 Modal에서 취소 시 삭제 미진행
-  - [ ] 빈 목록 시 안내 문구 표시
+  - [x] 카테고리 생성 후 목록이 즉시 갱신됨 (쿼리 무효화 확인)
+  - [x] 수정 Modal에 기존 이름이 채워짐
+  - [x] 삭제 확인 Modal에서 취소 시 삭제 미진행
+  - [x] 빈 목록 시 안내 문구 표시
 - **의존성**: TASK-FE-02, TASK-FE-04, TASK-FE-05
 - **예상 소요**: 75분
 
@@ -533,32 +533,32 @@ TASK-FE-01
 
 - **목적**: 할일 CRUD, 상태별 색상 구분, 카테고리 필터/정렬을 포함한 핵심 기능을 완성한다.
 - **작업 내용**:
-  - [ ] `src/utils/todoUtils.js` — `getTodoColorClass(todo)` 함수
-    - [ ] 완료: `bg-green-50 line-through text-gray-400`
-    - [ ] 기한초과 (현재 > dueDate, 미완료): `bg-red-50 border-red-300`
-    - [ ] 기한임박 (현재 + 24h > dueDate, 미완료): `bg-orange-50 border-orange-300`
-    - [ ] 진행중: `bg-white` (기본)
-    - [ ] dueDate 없음: 기한초과 판별 제외 (BR-DATA-04)
-  - [ ] `src/hooks/useTodos.js`: `useGetTodos`(filter, sortBy, categoryId를 queryKey 포함), `useCreateTodoMutation`, `useUpdateTodoMutation`, `useDeleteTodoMutation`, `useToggleTodoMutation`
-  - [ ] `src/components/todo/TodoForm.jsx`: 제목(필수), 설명, 마감일(`<input type="date">`), 카테고리 선택(`<select>`)
-  - [ ] `src/components/todo/TodoItem.jsx`: `getTodoColorClass`로 행 배경색 적용, 체크박스 완료 토글, `Badge`로 카테고리 표시, 수정/삭제 버튼
-  - [ ] `src/components/todo/TodoList.jsx`: `useGetTodos` 사용, 로딩 시 `Spinner`, 빈 목록 안내 문구
-  - [ ] `src/components/todo/index.js`: 일괄 export
-  - [ ] `src/pages/MainPage.jsx`
-    - [ ] 카테고리 필터 버튼 목록 (`categoryStore.selectCategory`)
-    - [ ] 상태 필터 탭: 전체/진행중/완료 (`todoStore.setFilter`)
-    - [ ] 정렬 드롭다운 (`todoStore.setSortBy`)
-    - [ ] "할일 추가" 버튼 → Modal 내 `TodoForm`
-    - [ ] `TodoList` 렌더링
-    - [ ] 로그아웃 버튼: `authStore.clearAuth()` 후 `/login` 이동
+  - [x] `src/utils/todoUtils.js` — `getTodoColorClass(todo)` 함수
+    - [x] 완료: `bg-green-50 line-through text-gray-400`
+    - [x] 기한초과 (현재 > dueDate, 미완료): `bg-red-50 border-red-300`
+    - [x] 기한임박 (현재 + 24h > dueDate, 미완료): `bg-orange-50 border-orange-300`
+    - [x] 진행중: `bg-white` (기본)
+    - [x] dueDate 없음: 기한초과 판별 제외 (BR-DATA-04)
+  - [x] `src/hooks/useTodos.js`: `useGetTodos`(filter, sortBy, categoryId를 queryKey 포함), `useCreateTodoMutation`, `useUpdateTodoMutation`, `useDeleteTodoMutation`, `useToggleTodoMutation`
+  - [x] `src/components/todo/TodoForm.jsx`: 제목(필수), 설명, 마감일(`<input type="date">`), 카테고리 선택(`<select>`)
+  - [x] `src/components/todo/TodoItem.jsx`: `getTodoColorClass`로 행 배경색 적용, 체크박스 완료 토글, `Badge`로 카테고리 표시, 수정/삭제 버튼
+  - [x] `src/components/todo/TodoList.jsx`: `useGetTodos` 사용, 로딩 시 `Spinner`, 빈 목록 안내 문구
+  - [x] `src/components/todo/index.js`: 일괄 export
+  - [x] `src/pages/MainPage.jsx`
+    - [x] 카테고리 필터 버튼 목록 (`categoryStore.selectCategory`)
+    - [x] 상태 필터 탭: 전체/진행중/완료 (`todoStore.setFilter`)
+    - [x] 정렬 드롭다운 (`todoStore.setSortBy`)
+    - [x] "할일 추가" 버튼 → Modal 내 `TodoForm`
+    - [x] `TodoList` 렌더링
+    - [x] 로그아웃 버튼: `authStore.clearAuth()` 후 `/login` 이동
 - **완료 조건**:
-  - [ ] 완료 할일: 초록 배경 + 취소선 표시
-  - [ ] 기한초과 할일: 빨간 배경 표시
-  - [ ] 기한임박(24h 이내) 할일: 주황/노랑 배경 표시 (FR-VIEW-02)
-  - [ ] 카테고리 필터 클릭 시 해당 카테고리의 할일만 표시
-  - [ ] 완료 토글 후 색상이 즉시 변경됨
-  - [ ] 생성/수정/삭제 후 목록이 즉시 갱신됨
-  - [ ] 로그아웃 후 `/login`으로 이동하고 보호 경로 접근 차단
+  - [x] 완료 할일: 초록 배경 + 취소선 표시
+  - [x] 기한초과 할일: 빨간 배경 표시
+  - [x] 기한임박(24h 이내) 할일: 주황/노랑 배경 표시 (FR-VIEW-02)
+  - [x] 카테고리 필터 클릭 시 해당 카테고리의 할일만 표시
+  - [x] 완료 토글 후 색상이 즉시 변경됨
+  - [x] 생성/수정/삭제 후 목록이 즉시 갱신됨
+  - [x] 로그아웃 후 `/login`으로 이동하고 보호 경로 접근 차단
 - **의존성**: TASK-FE-02, TASK-FE-03, TASK-FE-04, TASK-FE-05, TASK-FE-07
 - **예상 소요**: 120분
 
@@ -568,23 +568,23 @@ TASK-FE-01
 
 - **목적**: 모든 페이지와 기능이 통합된 상태에서 정상 동작하는지 검증하고, 모바일/태블릿/데스크탑 레이아웃을 확인한다.
 - **작업 내용**:
-  - [ ] Tailwind 반응형 접두사(`sm:`, `md:`, `lg:`) 적용 검토
-    - [ ] `MainPage`: 모바일에서 카테고리 필터가 가로 스크롤 또는 드롭다운 전환
-    - [ ] `TodoItem`: 좁은 화면에서 버튼이 세로 배치로 전환
-    - [ ] `Modal`: 모바일에서 전체 너비 적용
-  - [ ] 전체 사용자 시나리오 수동 검증 (회원가입 → 로그인 → 카테고리 생성 → 할일 생성/완료/수정/삭제 → 로그아웃)
-  - [ ] 엣지 케이스 검증:
-    - [ ] 네트워크 오류 시 에러 메시지 표시
-    - [ ] 토큰 만료(401) 시 자동 로그아웃 동작
-    - [ ] 빈 목록 상태(할일 없음, 카테고리 없음) UI 표시
-    - [ ] 마감일 없는 할일의 색상 로직 정상 처리 (BR-DATA-04)
-  - [ ] `QueryClientProvider`의 `staleTime`, `retry` 옵션 검토 및 조정
-  - [ ] 불필요한 `console.log` 및 임시 코드 제거
+  - [x] Tailwind 반응형 접두사(`sm:`, `md:`, `lg:`) 적용 검토
+    - [x] `MainPage`: 모바일에서 카테고리 필터가 가로 스크롤 또는 드롭다운 전환
+    - [x] `TodoItem`: 좁은 화면에서 버튼이 세로 배치로 전환
+    - [x] `Modal`: 모바일에서 전체 너비 적용
+  - [x] 전체 사용자 시나리오 수동 검증 (회원가입 → 로그인 → 카테고리 생성 → 할일 생성/완료/수정/삭제 → 로그아웃)
+  - [x] 엣지 케이스 검증:
+    - [x] 네트워크 오류 시 에러 메시지 표시
+    - [x] 토큰 만료(401) 시 자동 로그아웃 동작
+    - [x] 빈 목록 상태(할일 없음, 카테고리 없음) UI 표시
+    - [x] 마감일 없는 할일의 색상 로직 정상 처리 (BR-DATA-04)
+  - [x] `QueryClientProvider`의 `staleTime`, `retry` 옵션 검토 및 조정
+  - [x] 불필요한 `console.log` 및 임시 코드 제거
 - **완료 조건**:
-  - [ ] 모바일(375px), 태블릿(768px), 데스크탑(1280px)에서 레이아웃이 깨지지 않음
-  - [ ] 전체 사용자 시나리오가 오류 없이 완주됨
-  - [ ] `401` 응답 시 자동 로그아웃 및 리다이렉트 동작
-  - [ ] 브라우저 콘솔에 불필요한 에러·경고 없음
+  - [x] 모바일(375px), 태블릿(768px), 데스크탑(1280px)에서 레이아웃이 깨지지 않음
+  - [x] 전체 사용자 시나리오가 오류 없이 완주됨
+  - [x] `401` 응답 시 자동 로그아웃 및 리다이렉트 동작
+  - [x] 브라우저 콘솔에 불필요한 에러·경고 없음
 - **의존성**: TASK-FE-01 ~ TASK-FE-08 전체
 - **예상 소요**: 60분
 
